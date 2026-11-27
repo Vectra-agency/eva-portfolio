@@ -1,28 +1,25 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import content from "@content/content.json";
 import { LOCALES, isLocale, t } from "@/lib/i18n";
 import { designOf } from "@/lib/content";
 import { fontClasses, KOREAN_FONTS_HREF, STUDIO_FONTS_HREF, THEME_COLOR } from "@/lib/fonts";
-import type { Content } from "@/lib/types";
+import { getSiteContent } from "@/lib/server/site-content";
 import "@/styles/site.css";
 import "@/styles/minimal.css";
 import "@/styles/studio.css";
-
-const c = content as Content;
-const design = designOf(c);
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
 }
 
-export const viewport: Viewport = {
-  themeColor: THEME_COLOR[design],
-};
+export async function generateViewport(): Promise<Viewport> {
+  return { themeColor: THEME_COLOR[designOf(await getSiteContent())] };
+}
 
 export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
+  const c = await getSiteContent();
   return {
     title: t(c.meta.title, locale),
     description: t(c.meta.description, locale),
@@ -32,6 +29,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
 export default async function LocaleLayout({ children, params }: LayoutProps<"/[locale]">) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
+  const design = designOf(await getSiteContent());
   const needsFonts = locale === "ko" || design === "studio";
   return (
     <html lang={locale} className={fontClasses} data-design={design} suppressHydrationWarning>

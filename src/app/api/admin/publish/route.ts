@@ -1,7 +1,9 @@
+import { revalidateTag } from "next/cache";
 import type { NextRequest } from "next/server";
 import { isAuthed, unauthorized } from "@/lib/server/auth";
 import { looksLikeContent } from "@/lib/content";
 import { publishContent, storageMode, type PendingFile } from "@/lib/server/storage";
+import { CONTENT_TAG } from "@/lib/server/site-content";
 
 export async function POST(req: NextRequest) {
   if (!isAuthed(req)) return unauthorized();
@@ -26,6 +28,8 @@ export async function POST(req: NextRequest) {
 
   try {
     const result = await publishContent(body.content, pending);
+    // Local files changed: the next visit re-reads them. (With GitHub the redeploy does this.)
+    if (storageMode() === "local") revalidateTag(CONTENT_TAG, { expire: 0 });
     return Response.json({ ok: true, mode: storageMode(), ...result });
   } catch (e) {
     console.error(e);

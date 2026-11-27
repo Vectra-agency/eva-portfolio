@@ -1,5 +1,8 @@
 {
   "design": "minimal",
+  "studio": {
+    "portrait": "avatar"
+  },
   "meta": {
     "title": {
       "ru": "Eva Rovenskaia — международные культурные коммуникации",

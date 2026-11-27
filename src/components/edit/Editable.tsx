@@ -64,6 +64,26 @@ export function Raw({ path, as = "span", className, placeholder }: TextProps) {
   );
 }
 
+/**
+ * The text exactly as typed. `innerText` would apply CSS text-transform, so an uppercase
+ * heading style would be saved as "ЗАГЛАВНЫЕ БУКВЫ".
+ */
+function plainText(el: HTMLElement): string {
+  let out = "";
+  const walk = (node: Node) => {
+    node.childNodes.forEach((c) => {
+      if (c.nodeType === Node.TEXT_NODE) out += c.nodeValue ?? "";
+      else if (c.nodeName === "BR") out += "\n";
+      else {
+        if ((c.nodeName === "DIV" || c.nodeName === "P") && out && !out.endsWith("\n")) out += "\n";
+        walk(c);
+      }
+    });
+  };
+  walk(el);
+  return out;
+}
+
 function EditableText({
   as,
   className,
@@ -84,11 +104,11 @@ function EditableText({
   // The element is uncontrolled while focused so the caret never jumps.
   useLayoutEffect(() => {
     const el = ref.current;
-    if (el && document.activeElement !== el && el.innerText !== value) el.innerText = value;
+    if (el && document.activeElement !== el && plainText(el) !== value) el.textContent = value;
   });
 
   const read = (el: HTMLElement) => {
-    let v = el.innerText.replace(/ /g, " ");
+    let v = plainText(el).replace(/ /g, " ");
     if (!multiline) v = v.replace(/\s*\n\s*/g, " ");
     return v.trim() === "" ? "" : v;
   };
@@ -106,7 +126,7 @@ function EditableText({
       onBlur={(e: React.FocusEvent<HTMLElement>) => {
         const v = read(e.currentTarget).trim();
         if (v !== value) onChange(v);
-        if (e.currentTarget.innerText !== v) e.currentTarget.innerText = v;
+        if (plainText(e.currentTarget) !== v) e.currentTarget.textContent = v;
       }}
       onKeyDown={(e: React.KeyboardEvent<HTMLElement>) => {
         if (e.key === "Enter" && !multiline) {

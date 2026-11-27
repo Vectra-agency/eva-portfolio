@@ -4,6 +4,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, type ReactNode } from 
 import { t } from "@/lib/i18n";
 import { EditableImage, T } from "@/components/edit/Editable";
 import { LivingPortrait } from "./LivingPortrait";
+import { avatarUrl } from "./portrait-engine";
 import { useSite } from "./SiteContext";
 
 const delay = (d: string, y = "20px") => ({ "--d": d, "--y": y }) as React.CSSProperties;
@@ -56,6 +57,7 @@ export function StudioHero() {
   const name = t(content.hero.name, locale);
   const greeting = t(content.hero.greeting, locale) || name;
   const photo = content.hero.photo;
+  const mode = content.studio?.portrait ?? "avatar";
 
   return (
     <section className="studio-hero" id="home">
@@ -71,19 +73,43 @@ export function StudioHero() {
 
       {edit ? (
         <div className="portrait-wrap portrait-wrap--edit">
-          <EditableImage
-            path={["hero", "photo"]}
-            kind="photo"
-            alt={name}
-            className="portrait-inner"
-            empty={<div className="portrait-blank portrait-blank--edit">{initialsOf(name)}</div>}
-          />
+          <div className="portrait-switch" role="group" aria-label="Портрет">
+            {(
+              [
+                ["avatar", "Аватар"],
+                ["photo", "Фото"],
+              ] as const
+            ).map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                className={mode === value ? "is-active" : ""}
+                onClick={() => edit.update(["studio", "portrait"], value)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          {mode === "avatar" ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={avatarUrl("rest")} alt="" className="portrait-fallback" />
+          ) : (
+            <EditableImage
+              path={["hero", "photo"]}
+              kind="photo"
+              alt={name}
+              className="portrait-inner"
+              empty={<div className="portrait-blank portrait-blank--edit">{initialsOf(name)}</div>}
+            />
+          )}
           <span className="ed-hint portrait-hint">
-            Лучше всего — PNG с прозрачным фоном: тогда «тянется» только сам портрет.
+            {mode === "avatar"
+              ? "Живой аватар: следит глазами, моргает, реагирует на наведение, клики и «тянется»."
+              : "Своё фото тоже тянется как тесто. Лучше всего — PNG с прозрачным фоном."}
           </span>
         </div>
       ) : (
-        <LivingPortrait src={photo ? asset(photo) : null} initials={initialsOf(name)} alt={name} />
+        <LivingPortrait mode={mode} photo={photo ? asset(photo) : null} initials={initialsOf(name)} alt={name} />
       )}
 
       <div className="studio-hero__bottom">

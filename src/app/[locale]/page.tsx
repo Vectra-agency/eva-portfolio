@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import content from "@content/content.json";
 import { LOCALES, isLocale, t } from "@/lib/i18n";
-import type { Content, Locale } from "@/lib/types";
+import type { Locale } from "@/lib/types";
+import { getSiteContent } from "@/lib/server/site-content";
 import { SiteProvider } from "@/components/site/SiteContext";
 import { HomePage } from "@/components/site/Pages";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  const c = content as Content;
+  const c = await getSiteContent();
   return {
     title: t(c.meta.title, locale),
     description: t(c.meta.description, locale),
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]">): Prom
 export default async function Page({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   return (
-    <SiteProvider content={content as Content} locale={locale as Locale} page="home">
+    <SiteProvider content={await getSiteContent()} locale={locale as Locale} page="home">
       <HomePage />
     </SiteProvider>
   );
