@@ -1,0 +1,485 @@
+{
+  "meta": {
+    "title": {
+      "ru": "Eva Rovenskaia — международные культурные коммуникации",
+      "en": "Eva Rovenskaia — International Cultural Communications",
+      "ko": "Eva Rovenskaia — 국제 문화 커뮤니케이션"
+    },
+    "description": {
+      "ru": "Портфолио Eva Rovenskaia: журналистика, корейская культура, искусство и межкультурное сотрудничество.",
+      "en": "Portfolio of Eva Rovenskaia: journalism, Korean culture, art and intercultural cooperation.",
+      "ko": "Eva Rovenskaia 포트폴리오: 저널리즘, 한국 문화, 예술, 문화 간 협력."
+    }
+  },
+  "hero": {
+    "eyebrow": {
+      "ru": "Профессиональное портфолио",
+      "en": "Professional Portfolio",
+      "ko": "포트폴리오"
+    },
+    "name": {
+      "ru": "Eva Rovenskaia",
+      "en": "Eva Rovenskaia",
+      "ko": "Eva Rovenskaia"
+    },
+    "title": {
+      "ru": "Международные культурные коммуникации",
+      "en": "International Cultural Communications",
+      "ko": "국제 문화 커뮤니케이션"
+    },
+    "tags": {
+      "ru": "Корейская культура · Журналистика · Искусство · Межкультурное сотрудничество · Индустрия люкса",
+      "en": "Korean Culture · Journalism · Art · Intercultural Cooperation · Luxury Industry",
+      "ko": "한국 문화 · 저널리즘 · 예술 · 문화 간 협력 · 럭셔리 산업"
+    },
+    "photo": null
+  },
+  "sections": {
+    "experience": {
+      "title": { "ru": "Профессиональный опыт", "en": "Professional Experience", "ko": "경력" },
+      "nav": { "ru": "Опыт", "en": "Experience", "ko": "경력" },
+      "hidden": false
+    },
+    "publications": {
+      "title": { "ru": "Избранные публикации", "en": "Selected Publications", "ko": "주요 기고문" },
+      "nav": { "ru": "Публикации", "en": "Publications", "ko": "기고문" },
+      "hidden": false
+    },
+    "education": {
+      "title": { "ru": "Образование и квалификация", "en": "Education & Qualifications", "ko": "학력 및 자격" },
+      "nav": { "ru": "Образование", "en": "Education", "ko": "학력" },
+      "hidden": false
+    },
+    "achievements": {
+      "title": { "ru": "Достижения", "en": "Achievements", "ko": "수상 및 성과" },
+      "nav": { "ru": "Достижения", "en": "Achievements", "ko": "성과" },
+      "hidden": false
+    },
+    "recommendations": {
+      "title": { "ru": "Рекомендации и подтверждения", "en": "References & Recommendations", "ko": "추천서 및 증빙 자료" },
+      "nav": {},
+      "hidden": false
+    },
+    "contacts": {
+      "title": { "ru": "Контакты", "en": "Contact", "ko": "연락처" },
+      "nav": { "ru": "Контакты", "en": "Contact", "ko": "연락처" },
+      "hidden": false
+    },
+    "downloads": {
+      "title": { "ru": "Скачать портфолио", "en": "Download Portfolio", "ko": "포트폴리오 다운로드" },
+      "nav": { "ru": "Скачать", "en": "Downloads", "ko": "다운로드" },
+      "hidden": false
+    }
+  },
+  "experience": [
+    {
+      "id": "exp-dcn",
+      "org": { "ru": "DCN & TWK", "en": "DCN & TWK", "ko": "DCN & TWK" },
+      "role": {
+        "ru": "Внештатный зарубежный корреспондент",
+        "en": "Freelance Foreign Correspondent",
+        "ko": "프리랜서 해외 통신원"
+      },
+      "period": {},
+      "description": {}
+    },
+    {
+      "id": "exp-kantore",
+      "org": { "ru": "KANTORE", "en": "KANTORE", "ko": "KANTORE" },
+      "role": { "ru": "Редактор статей", "en": "Article Editor", "ko": "기사 에디터" },
+      "period": {},
+      "description": {}
+    }
+  ],
+  "publications": {
+    "categories": [
+      { "id": "articles", "label": { "ru": "Статьи", "en": "Articles", "ko": "기사" } },
+      { "id": "interviews", "label": { "ru": "Интервью", "en": "Interviews", "ko": "인터뷰" } },
+      { "id": "reports", "label": { "ru": "Репортажи", "en": "Reportage", "ko": "르포" } },
+      { "id": "reviews", "label": { "ru": "Обзоры выставок", "en": "Exhibition Reviews", "ko": "전시 리뷰" } }
+    ],
+    "items": [
+      {
+        "id": "pub-craft",
+        "category": "articles",
+        "title": {
+          "ru": "Новая волна корейского ремесла: как мастера Ичхона переосмысляют керамику",
+          "en": "The new wave of Korean craft: how Icheon's makers are rethinking ceramics",
+          "ko": "한국 공예의 새로운 물결: 이천의 작가들이 다시 쓰는 도자기"
+        },
+        "outlet": { "ru": "DCN", "en": "DCN", "ko": "DCN" },
+        "date": "2026-09",
+        "description": {
+          "ru": "О том, как молодые керамисты соединяют традиции эпохи Чосон с современным дизайном.",
+          "en": "How young ceramicists bring Joseon-era traditions into contemporary design.",
+          "ko": "젊은 도예가들이 조선 시대의 전통을 현대 디자인으로 잇는 방식."
+        },
+        "cover": "/uploads/examples/cover-1.svg",
+        "links": {
+          "ru": "https://example.com/dcn/korean-craft-ru",
+          "en": "https://example.com/dcn/korean-craft-en",
+          "ko": "https://example.com/dcn/korean-craft-ko"
+        }
+      },
+      {
+        "id": "pub-curator",
+        "category": "interviews",
+        "title": {
+          "ru": "«Музей — это разговор»: интервью с куратором сеульской галереи",
+          "en": "“A museum is a conversation”: an interview with a Seoul gallery curator",
+          "ko": "“미술관은 대화입니다”: 서울 갤러리 큐레이터 인터뷰"
+        },
+        "outlet": { "ru": "TWK", "en": "TWK", "ko": "TWK" },
+        "date": "2026-06",
+        "description": {
+          "ru": "Как небольшие галереи Сеула находят международную аудиторию.",
+          "en": "How Seoul's small galleries find an international audience.",
+          "ko": "서울의 작은 갤러리들이 해외 관객을 만나는 방법."
+        },
+        "cover": "/uploads/examples/cover-2.svg",
+        "links": {
+          "ru": "https://example.com/twk/curator-interview-ru",
+          "en": "https://example.com/twk/curator-interview-en"
+        }
+      },
+      {
+        "id": "pub-lanterns",
+        "category": "reports",
+        "title": {
+          "ru": "Сеул в дни фестиваля фонарей: репортаж с Чхонгечхона",
+          "en": "Seoul during the Lantern Festival: a report from Cheonggyecheon",
+          "ko": "빛초롱 축제의 서울: 청계천 현장 르포"
+        },
+        "outlet": { "ru": "DCN", "en": "DCN", "ko": "DCN" },
+        "date": "2026-03",
+        "description": {
+          "ru": "Город, свет и традиции: как фестиваль меняет ритм центра столицы.",
+          "en": "City, light and tradition: how the festival changes the rhythm of the capital's centre.",
+          "ko": "도시와 빛, 그리고 전통: 축제가 바꾸는 도심의 리듬."
+        },
+        "cover": "/uploads/examples/cover-3.svg",
+        "links": {
+          "ru": "https://example.com/dcn/lantern-festival-ru",
+          "ko": "https://example.com/dcn/lantern-festival-ko"
+        }
+      },
+      {
+        "id": "pub-dansaekhwa",
+        "category": "reviews",
+        "title": {
+          "ru": "Тишина и цвет: обзор выставки корейской абстракции",
+          "en": "Silence and colour: a review of a Korean abstraction exhibition",
+          "ko": "고요와 색: 한국 추상화 전시 리뷰"
+        },
+        "outlet": { "ru": "KANTORE", "en": "KANTORE", "ko": "KANTORE" },
+        "date": "2025-11",
+        "description": {
+          "ru": "Дансэкхва и её наследники — почему монохром снова в центре внимания.",
+          "en": "Dansaekhwa and its heirs — why monochrome is back in the spotlight.",
+          "ko": "단색화와 그 계승자들 — 모노크롬이 다시 주목받는 이유."
+        },
+        "cover": "/uploads/examples/cover-4.svg",
+        "links": {
+          "ru": "https://example.com/kantore/dansaekhwa-ru",
+          "en": "https://example.com/kantore/dansaekhwa-en"
+        }
+      },
+      {
+        "id": "pub-hanbok",
+        "category": "articles",
+        "title": {
+          "ru": "Ханбок в современном гардеробе: от церемонии к повседневности",
+          "en": "Hanbok in the modern wardrobe: from ceremony to everyday wear",
+          "ko": "현대인의 옷장 속 한복: 의례복에서 일상복으로"
+        },
+        "outlet": { "ru": "KANTORE", "en": "KANTORE", "ko": "KANTORE" },
+        "date": "2025-08",
+        "description": {
+          "ru": "Как дизайнеры возвращают традиционный костюм в городскую моду.",
+          "en": "How designers are bringing traditional dress back into city fashion.",
+          "ko": "디자이너들이 전통 의상을 도시 패션으로 되살리는 방법."
+        },
+        "cover": "/uploads/examples/cover-5.svg",
+        "links": {
+          "ru": "https://example.com/kantore/hanbok-ru"
+        }
+      },
+      {
+        "id": "pub-poetry",
+        "category": "interviews",
+        "title": {
+          "ru": "Разговор с переводчиком корейской поэзии",
+          "en": "In conversation with a translator of Korean poetry",
+          "ko": "한국 시 번역가와의 대화"
+        },
+        "outlet": { "ru": "DCN", "en": "DCN", "ko": "DCN" },
+        "date": "2025-05",
+        "description": {
+          "ru": "О том, что теряется и что рождается заново при переводе.",
+          "en": "On what gets lost — and what is born anew — in translation.",
+          "ko": "번역 과정에서 사라지는 것과 새로 태어나는 것에 대하여."
+        },
+        "cover": "/uploads/examples/cover-6.svg",
+        "links": {
+          "en": "https://example.com/dcn/poetry-translation-en",
+          "ko": "https://example.com/dcn/poetry-translation-ko"
+        }
+      }
+    ]
+  },
+  "education": [
+    {
+      "id": "edu-korean",
+      "title": { "ru": "Корейский язык и корееведение", "en": "Korean Language & Korean Studies", "ko": "한국어 및 한국학" },
+      "place": { "ru": "King Sejong Institute, корейские университеты", "en": "King Sejong Institute, Korean universities", "ko": "세종학당, 한국 대학교" },
+      "period": ""
+    },
+    {
+      "id": "edu-journalism",
+      "title": { "ru": "Журналистика и медиакоммуникации", "en": "Journalism & Media Communications", "ko": "저널리즘 및 미디어 커뮤니케이션" },
+      "place": { "ru": "Профильное дополнительное образование", "en": "Specialised continuing education", "ko": "전문 분야 추가 교육" },
+      "period": ""
+    },
+    {
+      "id": "edu-art",
+      "title": { "ru": "Искусство и культурное наследие", "en": "Art & Cultural Heritage", "ko": "예술 및 문화유산" },
+      "place": { "ru": "История искусства, культурология", "en": "Art history, cultural studies", "ko": "미술사, 문화학" },
+      "period": ""
+    },
+    {
+      "id": "edu-relations",
+      "title": { "ru": "Международные культурные связи", "en": "International Cultural Relations", "ko": "국제 문화 교류" },
+      "place": { "ru": "Дипломатия и межкультурная коммуникация", "en": "Diplomacy and intercultural communication", "ko": "외교 및 문화 간 커뮤니케이션" },
+      "period": ""
+    },
+    {
+      "id": "edu-luxury",
+      "title": { "ru": "Индустрия люкса и бизнес", "en": "Luxury Industry & Business", "ko": "럭셔리 산업 및 비즈니스" },
+      "place": { "ru": "LVMH, Arizona State University", "en": "LVMH, Arizona State University", "ko": "LVMH, 애리조나 주립대학교" },
+      "period": ""
+    },
+    {
+      "id": "edu-core",
+      "title": { "ru": "Основное образование", "en": "Core Education", "ko": "학위 과정" },
+      "place": { "ru": "Полиграфическое образование", "en": "Printing and publishing", "ko": "인쇄·출판 전공" },
+      "period": ""
+    }
+  ],
+  "certificates": {
+    "title": { "ru": "Избранные сертификаты", "en": "Selected Certificates", "ko": "주요 수료증" },
+    "archiveLink": {
+      "ru": "Полный тематический архив сертификатов",
+      "en": "Full certificate archive by topic",
+      "ko": "주제별 수료증 전체 보기"
+    },
+    "themes": [
+      { "id": "korean", "label": { "ru": "Корейский язык и культура", "en": "Korean Language & Culture", "ko": "한국어와 한국 문화" } },
+      { "id": "journalism", "label": { "ru": "Журналистика и медиа", "en": "Journalism & Media", "ko": "저널리즘과 미디어" } },
+      { "id": "art", "label": { "ru": "Искусство и наследие", "en": "Art & Heritage", "ko": "예술과 문화유산" } },
+      { "id": "relations", "label": { "ru": "Международные связи", "en": "International Relations", "ko": "국제 교류" } },
+      { "id": "luxury", "label": { "ru": "Индустрия люкса", "en": "Luxury Industry", "ko": "럭셔리 산업" } }
+    ],
+    "items": [
+      {
+        "id": "cert-korean-course",
+        "title": { "ru": "Курс корейского языка", "en": "Korean Language Course", "ko": "한국어 교육과정" },
+        "issuer": { "ru": "King Sejong Institute", "en": "King Sejong Institute", "ko": "세종학당" },
+        "date": "2025-12",
+        "theme": "korean",
+        "image": "/uploads/examples/certificate-1.svg",
+        "featured": true
+      },
+      {
+        "id": "cert-korean-society",
+        "title": { "ru": "Корейская культура и общество", "en": "Korean Culture and Society", "ko": "한국 문화와 사회" },
+        "issuer": { "ru": "Корейский университет", "en": "Korean university", "ko": "한국 대학교" },
+        "date": "2025-07",
+        "theme": "korean",
+        "image": "/uploads/examples/certificate-2.svg",
+        "featured": true
+      },
+      {
+        "id": "cert-journalism",
+        "title": { "ru": "Основы журналистики", "en": "Foundations of Journalism", "ko": "저널리즘 기초" },
+        "issuer": { "ru": "Онлайн-курс", "en": "Online course", "ko": "온라인 과정" },
+        "date": "2025-03",
+        "theme": "journalism",
+        "image": "/uploads/examples/certificate-3.svg",
+        "featured": true
+      },
+      {
+        "id": "cert-art-history",
+        "title": { "ru": "История искусства", "en": "History of Art", "ko": "미술사" },
+        "issuer": { "ru": "Онлайн-курс", "en": "Online course", "ko": "온라인 과정" },
+        "date": "2024-11",
+        "theme": "art",
+        "image": "/uploads/examples/certificate-4.svg",
+        "featured": true
+      },
+      {
+        "id": "cert-intercultural",
+        "title": { "ru": "Межкультурная коммуникация", "en": "Intercultural Communication", "ko": "문화 간 커뮤니케이션" },
+        "issuer": { "ru": "Онлайн-курс", "en": "Online course", "ko": "온라인 과정" },
+        "date": "2024-09",
+        "theme": "relations",
+        "image": "/uploads/examples/certificate-5.svg",
+        "featured": true
+      },
+      {
+        "id": "cert-luxury",
+        "title": { "ru": "Основы индустрии люкса", "en": "Luxury Industry Fundamentals", "ko": "럭셔리 산업 기초" },
+        "issuer": { "ru": "LVMH", "en": "LVMH", "ko": "LVMH" },
+        "date": "2024-06",
+        "theme": "luxury",
+        "image": "/uploads/examples/certificate-6.svg",
+        "featured": true
+      },
+      {
+        "id": "cert-media",
+        "title": { "ru": "Медиакоммуникации", "en": "Media Communications", "ko": "미디어 커뮤니케이션" },
+        "issuer": { "ru": "Онлайн-курс", "en": "Online course", "ko": "온라인 과정" },
+        "date": "2024-04",
+        "theme": "journalism",
+        "image": "/uploads/examples/certificate-7.svg",
+        "featured": false
+      },
+      {
+        "id": "cert-heritage",
+        "title": { "ru": "Культурное наследие Кореи", "en": "Korean Cultural Heritage", "ko": "한국의 문화유산" },
+        "issuer": { "ru": "Онлайн-курс", "en": "Online course", "ko": "온라인 과정" },
+        "date": "2024-02",
+        "theme": "art",
+        "image": "/uploads/examples/certificate-8.svg",
+        "featured": false
+      }
+    ]
+  },
+  "achievements": [
+    {
+      "id": "ach-awards",
+      "title": { "ru": "Международные конкурсы и награды", "en": "International competitions and awards", "ko": "국제 공모전 및 수상" },
+      "description": {},
+      "year": ""
+    },
+    {
+      "id": "ach-trip",
+      "title": { "ru": "Выигранная образовательная поездка в Корею", "en": "Awarded an educational trip to Korea", "ko": "한국 교육 연수 선발" },
+      "description": {},
+      "year": ""
+    },
+    {
+      "id": "ach-projects",
+      "title": { "ru": "Творческие и культурные проекты", "en": "Creative and cultural projects", "ko": "창작 및 문화 프로젝트" },
+      "description": {},
+      "year": ""
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "rec-docs",
+      "title": { "ru": "Профессиональные документы", "en": "Professional documents", "ko": "전문 증빙 자료" },
+      "description": {
+        "ru": "Редакционные подтверждения и рекомендательные письма по мере получения",
+        "en": "Editorial confirmations and letters of recommendation, added as they are received",
+        "ko": "편집부 확인서 및 추천서 (수령 시 순차 추가)"
+      },
+      "file": null,
+      "url": ""
+    }
+  ],
+  "contacts": [
+    {
+      "id": "contact-email",
+      "type": "email",
+      "label": { "ru": "Профессиональная почта", "en": "Professional email", "ko": "업무용 이메일" },
+      "value": "eva.rovenskaia@example.com"
+    },
+    {
+      "id": "contact-linkedin",
+      "type": "linkedin",
+      "label": { "ru": "LinkedIn", "en": "LinkedIn", "ko": "LinkedIn" },
+      "value": "https://www.linkedin.com/in/example"
+    },
+    {
+      "id": "contact-remember",
+      "type": "remember",
+      "label": { "ru": "Remember", "en": "Remember", "ko": "리멤버" },
+      "value": "https://example.com/remember"
+    }
+  ],
+  "downloads": [
+    {
+      "id": "dl-cv",
+      "title": { "ru": "Краткое резюме", "en": "Short CV", "ko": "요약 이력서" },
+      "format": "PDF",
+      "kind": "file",
+      "file": null,
+      "url": "https://example.com/eva-rovenskaia-cv.pdf"
+    },
+    {
+      "id": "dl-portfolio",
+      "title": { "ru": "Полное профессиональное портфолио", "en": "Full professional portfolio", "ko": "전체 포트폴리오" },
+      "format": "PDF",
+      "kind": "file",
+      "file": null,
+      "url": "https://example.com/eva-rovenskaia-portfolio.pdf"
+    },
+    {
+      "id": "dl-academic",
+      "title": { "ru": "Академическое портфолио", "en": "Academic portfolio", "ko": "학업 포트폴리오" },
+      "format": "PDF",
+      "kind": "file",
+      "file": null,
+      "url": "https://example.com/eva-rovenskaia-academic.pdf"
+    },
+    {
+      "id": "dl-cv-docx",
+      "title": { "ru": "Редактируемое резюме", "en": "Editable CV", "ko": "편집 가능한 이력서" },
+      "format": "DOCX",
+      "kind": "file",
+      "file": null,
+      "url": "https://example.com/eva-rovenskaia-cv.docx"
+    },
+    {
+      "id": "dl-journalism",
+      "title": { "ru": "Избранные журналистские работы", "en": "Selected journalism", "ko": "주요 기사 모음" },
+      "format": "PDF",
+      "kind": "file",
+      "file": null,
+      "url": "https://example.com/eva-rovenskaia-journalism.pdf"
+    },
+    {
+      "id": "dl-certificates",
+      "title": { "ru": "Архив сертификатов", "en": "Certificate archive", "ko": "수료증 아카이브" },
+      "format": "ZIP",
+      "kind": "certificates-zip",
+      "file": null,
+      "url": ""
+    }
+  ],
+  "footer": {
+    "text": {
+      "ru": "Eva Rovenskaia · Professional Portfolio",
+      "en": "Eva Rovenskaia · Professional Portfolio",
+      "ko": "Eva Rovenskaia · Professional Portfolio"
+    }
+  },
+  "ui": {
+    "all": { "ru": "Все", "en": "All", "ko": "전체" },
+    "read": { "ru": "Читать", "en": "Read", "ko": "읽기" },
+    "download": { "ru": "Скачать", "en": "Download", "ko": "다운로드" },
+    "backHome": { "ru": "На главную", "en": "Back to home", "ko": "홈으로" },
+    "archiveTitle": { "ru": "Архив сертификатов", "en": "Certificate Archive", "ko": "수료증 아카이브" },
+    "archiveIntro": {
+      "ru": "Все сертификаты, сгруппированные по темам.",
+      "en": "All certificates, grouped by topic.",
+      "ko": "주제별로 정리한 전체 수료증입니다."
+    },
+    "downloadAll": { "ru": "Скачать все (ZIP)", "en": "Download all (ZIP)", "ko": "전체 다운로드 (ZIP)" },
+    "preparing": { "ru": "Готовим архив…", "en": "Preparing archive…", "ko": "압축 파일을 준비하는 중…" },
+    "empty": { "ru": "Здесь пока нет материалов", "en": "Nothing here yet", "ko": "아직 등록된 자료가 없습니다" },
+    "menu": { "ru": "Меню", "en": "Menu", "ko": "메뉴" },
+    "close": { "ru": "Закрыть", "en": "Close", "ko": "닫기" },
+    "toTop": { "ru": "Наверх", "en": "Back to top", "ko": "맨 위로" }
+  }
+}

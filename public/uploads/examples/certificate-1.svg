@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 792" width="1120" height="792">
+  <rect width="1120" height="792" fill="#fffdf8"/>
+  <rect x="36" y="36" width="1048" height="720" fill="none" stroke="#8a3a2b" stroke-width="3"/>
+  <rect x="52" y="52" width="1016" height="688" fill="none" stroke="#8a3a2b" stroke-width="1" opacity=".5"/>
+  <text x="560" y="210" text-anchor="middle" font-family="Georgia, serif" font-size="64" letter-spacing="14" fill="#8a3a2b">CERTIFICATE</text>
+  <text x="560" y="262" text-anchor="middle" font-family="Georgia, serif" font-size="24" font-style="italic" fill="#8b8478">example · пример · 예시</text>
+  <rect x="330" y="340" width="460" height="3" fill="#1d1b18" opacity=".8"/>
+  <rect x="260" y="400" width="600" height="14" rx="7" fill="#e2d9ca"/>
+  <rect x="320" y="436" width="480" height="14" rx="7" fill="#e2d9ca"/>
+  <rect x="380" y="472" width="360" height="14" rx="7" fill="#e2d9ca"/>
+  <rect x="170" y="630" width="220" height="2" fill="#1d1b18" opacity=".6"/>
+  <rect x="730" y="630" width="220" height="2" fill="#1d1b18" opacity=".6"/>
+  <circle cx="560" cy="620" r="58" fill="none" stroke="#8a3a2b" stroke-width="3"/>
+  <circle cx="560" cy="620" r="44" fill="#8a3a2b" opacity=".15"/>
+  <text x="560" y="634" text-anchor="middle" font-family="Georgia, serif" font-size="40" fill="#8a3a2b">01</text>
+</svg>
