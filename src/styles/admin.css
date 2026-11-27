@@ -43,7 +43,7 @@
 
 .ed-text:focus {
   outline: 2px solid var(--accent);
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--ed-focus, rgba(255, 255, 255, 0.6));
 }
 
 .ed-text.ed-empty::before {
@@ -149,7 +149,7 @@
 .ed-add:hover {
   color: var(--accent);
   border-color: var(--accent);
-  background: rgba(255, 255, 255, 0.45);
+  background: var(--ed-hover, rgba(255, 255, 255, 0.45));
 }
 
 .ed-add span {
@@ -237,7 +237,7 @@
 }
 
 .ed-btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--ed-hover, rgba(255, 255, 255, 0.6));
   color: var(--accent);
   border-color: var(--accent);
 }
@@ -338,7 +338,8 @@
   max-width: calc(100vw - 24px);
   padding: 8px 8px 8px 10px;
   background: #1d1b18;
-  color: var(--paper);
+  color: #f5f1ea;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.55);
   font-family: var(--sans);
@@ -402,8 +403,17 @@
 }
 
 .seg button.is-active {
-  background: var(--paper);
-  color: var(--ink);
+  background: #f5f1ea;
+  color: #1d1b18;
+}
+
+.seg__label {
+  align-self: center;
+  padding: 0 8px 0 6px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 234, 0.45);
 }
 
 .admin-btn {
@@ -604,7 +614,7 @@
   padding: 0 12px;
   border: 1px solid var(--line-strong);
   border-radius: 9px;
-  background: #fffdf9;
+  background: var(--field-bg, #fffdf9);
   color: var(--ink);
   font: inherit;
   font-size: 14.5px;
@@ -683,7 +693,7 @@
 }
 
 .field__actions .admin-btn:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--ed-hover, rgba(255, 255, 255, 0.7));
 }
 
 /* ───────────────────────── Login ───────────────────────── */
@@ -761,5 +771,33 @@
 
   .is-editing {
     padding-bottom: 170px;
+  }
+}
+
+/* Field and focus colours that follow the dark design */
+html[data-design="studio"] {
+  --ed-focus: rgba(255, 255, 255, 0.06);
+  --ed-hover: rgba(255, 255, 255, 0.06);
+  --field-bg: #161616;
+}
+
+html[data-design="minimal"] {
+  --field-bg: #ffffff;
+}
+
+/* A white sheet inside the dark design keeps light editing colours */
+html[data-design="studio"] .section--experience,
+html[data-design="studio"] .section--education,
+html[data-design="studio"] .section--recommendations,
+html[data-design="studio"] .section--downloads {
+  --ed-focus: rgba(0, 0, 0, 0.04);
+  --ed-hover: rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 1180px) {
+  .admin-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: min(760px, calc(100vw - 24px));
   }
 }

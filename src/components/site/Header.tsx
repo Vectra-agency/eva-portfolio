@@ -79,7 +79,9 @@ export function Header() {
   };
 
   return (
-    <header className={`site-header${scrolled ? " is-scrolled" : ""}${open ? " is-open" : ""}`}>
+    <header
+      className={`site-header site-header--${page}${scrolled ? " is-scrolled" : ""}${open ? " is-open" : ""}`}
+    >
       <div className="site-header__inner">
         {edit ? (
           <button type="button" className="brand" onClick={() => edit.goto("home")}>

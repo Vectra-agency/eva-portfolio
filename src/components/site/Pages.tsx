@@ -11,7 +11,8 @@ import { ArrowLeftIcon, ArrowUpIcon, DownloadIcon } from "./Icons";
 import { Achievements, Contacts, Downloads, Education, Experience, Publications, Recommendations } from "./Sections";
 import { useSite } from "./SiteContext";
 import { isSectionVisible } from "./visibility";
-import { uid } from "@/lib/content";
+import { designOf, uid } from "@/lib/content";
+import { Marquee, StudioHero } from "./Studio";
 
 /** Fades blocks in as they scroll into view (including ones added later, e.g. after filtering). */
 function useReveal() {
@@ -88,7 +89,14 @@ export function HomePage() {
     <div ref={root} className={`site${edit ? " is-editing" : ""}`} id="top">
       <Header />
       <main className="page page--home" key={locale}>
-        <Hero />
+        {designOf(content) === "studio" ? (
+          <>
+            <StudioHero />
+            <Marquee />
+          </>
+        ) : (
+          <Hero />
+        )}
         {numbered.map(({ id, number }) => {
           const C = SECTION_COMPONENTS[id];
           return <C key={id} number={number} />;

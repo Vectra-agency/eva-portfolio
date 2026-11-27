@@ -2,9 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { LOCALES, LOCALE_NAMES } from "@/lib/i18n";
-import { getAt, setAt } from "@/lib/content";
+import { designOf, getAt, setAt } from "@/lib/content";
 import { compressImage } from "@/lib/image";
-import type { Content, Locale, Path } from "@/lib/types";
+import { DESIGNS, type Content, type Design, type Locale, type Path } from "@/lib/types";
 import {
   SiteProvider,
   pageHref,
@@ -24,6 +24,12 @@ interface Session {
 }
 
 const DRAFT_KEY = "eva-admin-draft-v1";
+
+const DESIGN_LABELS: Record<Design, { label: string; hint: string }> = {
+  minimal: { label: "Минимал", hint: "Белый фон, одна колонка — как в исходном макете" },
+  editorial: { label: "Журнал", hint: "Тёплая бумага, антиква, редакционная вёрстка" },
+  studio: { label: "Студия", hint: "Тёмный, крупные градиентные заголовки, «живой» портрет" },
+};
 const LOCALE_KEY = "eva-admin-locale";
 
 /** Files uploaded in this session but not yet committed, keyed by public path. */
@@ -187,6 +193,12 @@ function Editor({ mode, onLogout }: { mode: Mode; onLogout: () => void }) {
     () => !!content && !!published && JSON.stringify(content) !== JSON.stringify(published),
     [content, published],
   );
+
+  /* The design is a page-level attribute: preview the one being edited. */
+  const design = content ? designOf(content) : null;
+  useEffect(() => {
+    if (design) document.documentElement.dataset.design = design;
+  }, [design]);
 
   /* Keep the draft in the browser so a reload or closed tab loses nothing. */
   useEffect(() => {
@@ -390,15 +402,30 @@ function Editor({ mode, onLogout }: { mode: Mode; onLogout: () => void }) {
               type="button"
               className={page === "certificates" ? "is-active" : ""}
               onClick={() => edit.goto("certificates")}
+              title="Архив сертификатов"
             >
-              Архив сертификатов
+              Архив
             </button>
+          </div>
+          <div className="seg seg--design" role="group" aria-label="Дизайн сайта">
+            <span className="seg__label">Дизайн</span>
+            {DESIGNS.map((d) => (
+              <button
+                key={d}
+                type="button"
+                className={design === d ? "is-active" : ""}
+                onClick={() => update(["design"], d)}
+                title={DESIGN_LABELS[d].hint}
+              >
+                {DESIGN_LABELS[d].label}
+              </button>
+            ))}
           </div>
         </div>
 
         <div className="admin-bar__status" aria-live="polite">
           <span className={`dot${dirty ? " dot--dirty" : ""}`} />
-          {uploads > 0 ? "Загрузка файла…" : dirty ? "Есть неопубликованные изменения" : "Всё опубликовано"}
+          {uploads > 0 ? "Загрузка…" : dirty ? "Есть изменения" : "Опубликовано"}
         </div>
 
         <div className="admin-bar__group">

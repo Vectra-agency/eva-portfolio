@@ -107,6 +107,10 @@ export interface DownloadItem {
   url: string;
 }
 
+export const DESIGNS = ["minimal", "editorial", "studio"] as const;
+export type Design = (typeof DESIGNS)[number];
+export const DEFAULT_DESIGN: Design = "minimal";
+
 export const UI_KEYS = [
   "all",
   "read",
@@ -120,12 +124,16 @@ export const UI_KEYS = [
   "menu",
   "close",
   "toTop",
+  "contactMe",
 ] as const;
 export type UiKey = (typeof UI_KEYS)[number];
 
 export interface Content {
+  /** Visual design of the whole site, chosen in the admin panel. */
+  design?: Design;
   meta: { title: L; description: L };
-  hero: { eyebrow: L; name: L; title: L; tags: L; photo: string | null };
+  /** `greeting` is the giant first-screen heading of the "studio" design. */
+  hero: { eyebrow: L; name: L; title: L; tags: L; greeting?: L; photo: string | null };
   sections: Record<SectionId, SectionMeta>;
   experience: ExperienceItem[];
   publications: { categories: Category[]; items: Publication[] };

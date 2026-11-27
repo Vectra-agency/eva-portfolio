@@ -1,4 +1,8 @@
-import type { Content, Path } from "./types";
+import { DEFAULT_DESIGN, DESIGNS, type Content, type Design, type Path } from "./types";
+
+export function designOf(content: Pick<Content, "design">): Design {
+  return (DESIGNS as readonly string[]).includes(content.design ?? "") ? content.design! : DEFAULT_DESIGN;
+}
 
 /** Reads a nested value by path, e.g. ["experience", 0, "role"]. */
 export function getAt<T = unknown>(obj: unknown, path: Path): T {
