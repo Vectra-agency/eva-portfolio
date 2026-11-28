@@ -1,5 +1,10 @@
 {
   "design": "studio",
+  "designSwitch": {
+    "minimal": true,
+    "editorial": false,
+    "studio": true
+  },
   "studio": {
     "portrait": "avatar"
   },
@@ -857,6 +862,21 @@
       "ru": "Связаться",
       "en": "Contact me",
       "ko": "연락하기"
+    },
+    "designMinimal": {
+      "ru": "Минимал",
+      "en": "Minimal",
+      "ko": "미니멀"
+    },
+    "designEditorial": {
+      "ru": "Журнал",
+      "en": "Editorial",
+      "ko": "에디토리얼"
+    },
+    "designStudio": {
+      "ru": "Студия",
+      "en": "Studio",
+      "ko": "스튜디오"
     }
   }
 }

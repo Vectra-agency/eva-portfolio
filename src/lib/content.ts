@@ -1,7 +1,34 @@
-import { DEFAULT_DESIGN, DESIGNS, type Content, type Design, type Path } from "./types";
+import { DEFAULT_DESIGN, DESIGNS, type Content, type Design, type Locale, type Path } from "./types";
+
+export function isDesign(value: unknown): value is Design {
+  return (DESIGNS as readonly unknown[]).includes(value);
+}
 
 export function designOf(content: Pick<Content, "design">): Design {
-  return (DESIGNS as readonly string[]).includes(content.design ?? "") ? content.design! : DEFAULT_DESIGN;
+  return isDesign(content.design) ? content.design : DEFAULT_DESIGN;
+}
+
+/** Designs shown in the visitors' switch, in a fixed order. */
+export function switchDesigns(content: Pick<Content, "designSwitch">): Design[] {
+  return DESIGNS.filter((d) => content.designSwitch?.[d]);
+}
+
+/*
+ * URLs: /ru and /ru/certificates use the design chosen in the editor;
+ * /ru/studio and /ru/studio/certificates always show that design.
+ * Internally the first pair lives at /ru/_ (the proxy rewrites it), so every page has a design segment.
+ */
+export const DEFAULT_DESIGN_SEGMENT = "_";
+
+/** The design named by a URL segment: null for the default one, undefined if the segment is not a design. */
+export function designFromSegment(segment: string): Design | null | undefined {
+  if (segment === DEFAULT_DESIGN_SEGMENT) return null;
+  return isDesign(segment) ? segment : undefined;
+}
+
+/** Public URL of a page; `design` null means "whatever design the editor picked". */
+export function sitePath(page: "home" | "certificates", locale: Locale, design: Design | null = null): string {
+  return `/${locale}${design ? `/${design}` : ""}${page === "certificates" ? "/certificates" : ""}`;
 }
 
 /** Reads a nested value by path, e.g. ["experience", 0, "role"]. */

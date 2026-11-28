@@ -141,6 +141,13 @@ img {
   border-bottom-color: var(--line);
 }
 
+/* A backdrop-filter would make the header the box of the fixed menu inside it, leaving the menu see-through */
+.site-header.is-open {
+  background: var(--paper);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
 .site-header__inner {
   height: 100%;
   max-width: var(--max);
@@ -233,6 +240,11 @@ img {
 .lang__item.is-active {
   background: var(--ink);
   color: var(--paper);
+}
+
+/* The design switch sits next to the languages; on phones it moves into the menu. */
+.design-switch--menu {
+  display: none;
 }
 
 .menu-btn {
@@ -1560,6 +1572,16 @@ button.dl[aria-busy="true"] .dl__action .icon {
 @media (max-width: 600px) {
   .brand {
     font-size: 19px;
+  }
+
+  .design-switch--header {
+    display: none;
+  }
+
+  .design-switch--menu {
+    display: flex;
+    width: fit-content;
+    margin-top: 32px;
   }
 
   .hero {

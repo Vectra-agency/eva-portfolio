@@ -1,5 +1,5 @@
 import { t } from "@/lib/i18n";
-import { CONTACT_TYPES, type Content, type Path } from "@/lib/types";
+import { CONTACT_TYPES, DESIGNS, type Content, type Design, type Path } from "@/lib/types";
 import type { FieldSpec, SettingsSpec } from "./SiteContext";
 
 const CONTACT_LABELS: Record<string, string> = {
@@ -98,3 +98,33 @@ export const recommendationSettings = (path: Path): SettingsSpec => ({
     { type: "text", key: "url", label: "…или внешняя ссылка", placeholder: "https://…" },
   ],
 });
+
+const DESIGN_NAMES: Record<Design, string> = {
+  minimal: "Минимал — белый, как в исходном макете",
+  editorial: "Журнал — тёплая бумага, антиква",
+  studio: "Студия — тёмный, с «живым» портретом",
+};
+
+export const designSwitchSettings: SettingsSpec = {
+  title: "Переключатель дизайна",
+  path: ["designSwitch"],
+  fields: (c: Content): FieldSpec[] => {
+    const origin = typeof window === "undefined" ? "" : window.location.origin;
+    const on = DESIGNS.filter((d) => c.designSwitch?.[d]);
+    return [
+      {
+        type: "note",
+        key: "about",
+        text: "Если отмечено два дизайна или больше, посетители увидят их рядом с выбором языка. Названия кнопок правятся прямо в шапке, отдельно для каждого языка.",
+      },
+      ...DESIGNS.map((d): FieldSpec => ({ type: "checkbox", key: d, label: DESIGN_NAMES[d] })),
+      {
+        type: "note",
+        key: "links",
+        label: "Ссылки",
+        text: "У каждого дизайна свой адрес — его можно отправлять. Короткая ссылка сама подберёт язык, а с /ru, /en, /ko откроется нужный.",
+        code: (on.length ? on : DESIGNS).flatMap((d) => [`${origin}/${d}`, `${origin}/en/${d}`]),
+      },
+    ];
+  },
+};

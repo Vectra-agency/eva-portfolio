@@ -68,7 +68,8 @@ html[data-design="studio"] .site-header {
   border: 0 !important;
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
-  animation: studio-in 0.7s var(--ease-studio) both;
+  /* "backwards", not "both": a transform left on the header would trap the fixed mobile menu inside it */
+  animation: studio-in 0.7s var(--ease-studio) backwards;
   --y: -20px;
 }
 
@@ -131,6 +132,8 @@ html[data-design="studio"] .lang__item.is-active {
 }
 
 html[data-design="studio"] .mobile-menu {
+  /* --header-h is 0 here (the header scrolls away), so start the menu below the header row explicitly */
+  inset: 64px 0 0;
   background: #0c0c0c;
 }
 

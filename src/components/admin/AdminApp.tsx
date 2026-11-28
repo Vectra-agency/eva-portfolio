@@ -25,6 +25,15 @@ interface Session {
 
 const DRAFT_KEY = "eva-admin-draft-v1";
 
+/**
+ * A draft saved before the site gained new settings or interface strings would publish without them:
+ * take whatever the draft lacks (top-level fields, interface strings) from the published content.
+ */
+function withNewFields(draft: Content, pub: Content): Content {
+  const out = { ...pub, ...draft, ui: { ...pub.ui, ...draft.ui } };
+  return JSON.stringify(out) === JSON.stringify(draft) ? draft : out;
+}
+
 const DESIGN_LABELS: Record<Design, { label: string; hint: string }> = {
   minimal: { label: "Минимал", hint: "Белый фон, одна колонка — как в исходном макете" },
   editorial: { label: "Журнал", hint: "Тёплая бумага, антиква, редакционная вёрстка" },
@@ -179,7 +188,7 @@ function Editor({ mode, onLogout }: { mode: Mode; onLogout: () => void }) {
         setPublished(pub);
         const draft = readDraft();
         if (draft && JSON.stringify(draft.content) !== JSON.stringify(pub)) {
-          setContent(draft.content);
+          setContent(withNewFields(draft.content, pub));
           setPending(draft.pending ?? {});
           notify("Восстановлен неопубликованный черновик");
         } else {

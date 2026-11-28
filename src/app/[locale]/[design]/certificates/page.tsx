@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { LOCALES, isLocale, t } from "@/lib/i18n";
 import type { Locale } from "@/lib/types";
-import { getSiteContent } from "@/lib/server/site-content";
+import { getSiteContent, pageDesign } from "@/lib/server/site-content";
 import { SiteProvider } from "@/components/site/SiteContext";
 import { CertificatesPage } from "@/components/site/Pages";
 
-export async function generateMetadata({ params }: PageProps<"/[locale]/certificates">): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<"/[locale]/[design]/certificates">): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const c = await getSiteContent();
@@ -19,10 +20,18 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/certific
   };
 }
 
-export default async function Page({ params }: PageProps<"/[locale]/certificates">) {
-  const { locale } = await params;
+export default async function Page({ params }: PageProps<"/[locale]/[design]/certificates">) {
+  const { locale, design } = await params;
+  const resolved = await pageDesign(design);
+  if (!resolved) notFound();
   return (
-    <SiteProvider content={await getSiteContent()} locale={locale as Locale} page="certificates">
+    <SiteProvider
+      content={await getSiteContent()}
+      locale={locale as Locale}
+      page="certificates"
+      design={resolved.design}
+      urlDesign={resolved.named}
+    >
       <CertificatesPage />
     </SiteProvider>
   );

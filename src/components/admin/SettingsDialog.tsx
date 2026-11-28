@@ -128,6 +128,22 @@ function Field({ field, spec, value }: { field: FieldSpec; spec: SettingsSpec; v
       return (
         <UploadField label={field.label} value={value as string | null} kind="files" onChange={set} hint={field.hint} />
       );
+    case "note":
+      return (
+        <div className="field field--note">
+          {field.label && <span className="field__label">{field.label}</span>}
+          <p className="field__hint">{field.text}</p>
+          {field.code && field.code.length > 0 && (
+            <ul className="field__codes">
+              {field.code.map((c) => (
+                <li key={c}>
+                  <code>{c}</code>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      );
   }
 }
 

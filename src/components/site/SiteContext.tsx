@@ -1,7 +1,8 @@
 "use client";
 
 import { createContext, useContext, useMemo, type ReactNode } from "react";
-import type { Content, Locale, Path } from "@/lib/types";
+import { designOf, sitePath } from "@/lib/content";
+import type { Content, Design, Locale, Path } from "@/lib/types";
 
 export type Page = "home" | "certificates";
 export type UploadKind = "photo" | "covers" | "certificates" | "files";
@@ -13,7 +14,8 @@ export type FieldSpec =
   | { type: "checkbox"; key: string; label: string }
   | { type: "image"; key: string; label: string; kind: UploadKind }
   | { type: "file"; key: string; label: string; hint?: string }
-  | { type: "links"; key: string; label: string };
+  | { type: "links"; key: string; label: string }
+  | { type: "note"; key: string; label?: string; text: string; code?: string[] };
 
 export interface SettingsSpec {
   title: string;
@@ -40,10 +42,14 @@ interface SiteContextValue {
   content: Content;
   locale: Locale;
   page: Page;
+  /** The design this page is rendered in. */
+  design: Design;
+  /** The design written in the URL (/ru/studio), null on /ru: links keep it so visitors stay on it. */
+  urlDesign: Design | null;
   edit: EditApi | null;
   /** Resolves an uploaded file path to a URL the browser can load. */
   asset(path: string | null | undefined): string;
-  href(page: Page, locale?: Locale): string;
+  href(page: Page, locale?: Locale, design?: Design | null): string;
 }
 
 const Ctx = createContext<SiteContextValue | null>(null);
@@ -54,14 +60,14 @@ export function useSite(): SiteContextValue {
   return v;
 }
 
-export function pageHref(page: Page, locale: Locale) {
-  return page === "home" ? `/${locale}` : `/${locale}/certificates`;
-}
+export const pageHref = sitePath;
 
 export function SiteProvider({
   content,
   locale,
   page,
+  design,
+  urlDesign = null,
   edit = null,
   asset,
   children,
@@ -69,6 +75,8 @@ export function SiteProvider({
   content: Content;
   locale: Locale;
   page: Page;
+  design?: Design;
+  urlDesign?: Design | null;
   edit?: EditApi | null;
   asset?: (path: string | null | undefined) => string;
   children: ReactNode;
@@ -78,11 +86,13 @@ export function SiteProvider({
       content,
       locale,
       page,
+      design: design ?? designOf(content),
+      urlDesign,
       edit,
       asset: asset ?? ((p) => p ?? ""),
-      href: (target, l = locale) => pageHref(target, l),
+      href: (target, l = locale, d = urlDesign) => sitePath(target, l, d),
     }),
-    [content, locale, page, edit, asset],
+    [content, locale, page, design, urlDesign, edit, asset],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

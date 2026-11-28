@@ -1,22 +1,25 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { LOCALES, isLocale, t } from "@/lib/i18n";
-import { designOf } from "@/lib/content";
+import { DEFAULT_DESIGN_SEGMENT } from "@/lib/content";
+import { DESIGNS } from "@/lib/types";
 import { fontClasses, KOREAN_FONTS_HREF, STUDIO_FONTS_HREF, THEME_COLOR } from "@/lib/fonts";
-import { getSiteContent } from "@/lib/server/site-content";
+import { getSiteContent, pageDesign } from "@/lib/server/site-content";
 import "@/styles/site.css";
 import "@/styles/minimal.css";
 import "@/styles/studio.css";
 
+/** /ru/_ is the design chosen in the editor (served at /ru), /ru/studio etc. pin a design. */
 export function generateStaticParams() {
-  return LOCALES.map((locale) => ({ locale }));
+  return LOCALES.flatMap((locale) => [DEFAULT_DESIGN_SEGMENT, ...DESIGNS].map((design) => ({ locale, design })));
 }
 
-export async function generateViewport(): Promise<Viewport> {
-  return { themeColor: THEME_COLOR[designOf(await getSiteContent())] };
+export async function generateViewport({ params }: LayoutProps<"/[locale]/[design]">): Promise<Viewport> {
+  const resolved = await pageDesign((await params).design);
+  return resolved ? { themeColor: THEME_COLOR[resolved.design] } : {};
 }
 
-export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
+export async function generateMetadata({ params }: LayoutProps<"/[locale]/[design]">): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const c = await getSiteContent();
@@ -26,10 +29,11 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
   };
 }
 
-export default async function LocaleLayout({ children, params }: LayoutProps<"/[locale]">) {
-  const { locale } = await params;
-  if (!isLocale(locale)) notFound();
-  const design = designOf(await getSiteContent());
+export default async function LocaleLayout({ children, params }: LayoutProps<"/[locale]/[design]">) {
+  const { locale, design: segment } = await params;
+  const resolved = await pageDesign(segment);
+  if (!isLocale(locale) || !resolved) notFound();
+  const { design } = resolved;
   const needsFonts = locale === "ko" || design === "studio";
   return (
     <html lang={locale} className={fontClasses} data-design={design} suppressHydrationWarning>

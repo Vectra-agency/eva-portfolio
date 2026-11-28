@@ -3,9 +3,12 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { LANG_COOKIE, LOCALES, LOCALE_LABELS, LOCALE_NAMES, t } from "@/lib/i18n";
-import { SECTION_IDS, type Locale } from "@/lib/types";
+import { switchDesigns } from "@/lib/content";
+import { SECTION_IDS, type Design, type Locale, type UiKey } from "@/lib/types";
+import { T } from "@/components/edit/Editable";
 import { CloseIcon, MenuIcon } from "./Icons";
 import { useSite } from "./SiteContext";
+import { designSwitchSettings } from "./specs";
 import { isSectionVisible } from "./visibility";
 
 function rememberLocale(l: Locale) {
@@ -43,6 +46,62 @@ export function LangSwitch({ className = "" }: { className?: string }) {
           </Link>
         ),
       )}
+    </div>
+  );
+}
+
+const DESIGN_LABEL: Record<Design, UiKey> = {
+  minimal: "designMinimal",
+  editorial: "designEditorial",
+  studio: "designStudio",
+};
+
+/**
+ * Links to the same page in the other designs chosen in the editor (/ru/studio, /ru/minimal…).
+ * In the editor the labels are editable and the gear picks which designs are offered.
+ */
+export function DesignSwitch({ className = "" }: { className?: string }) {
+  const { content, locale, page, design, href, edit } = useSite();
+  const shown = switchDesigns(content);
+
+  if (edit) {
+    return (
+      <div className={`lang design-switch ${className}`} role="group" aria-label="Design">
+        {shown.length > 1 &&
+          shown.map((d) => (
+            <span key={d} className={`lang__item${d === design ? " is-active" : ""}`}>
+              <T path={["ui", DESIGN_LABEL[d]]} />
+            </span>
+          ))}
+        <button
+          type="button"
+          className="design-switch__cfg"
+          title="Какие дизайны предлагать посетителям"
+          onClick={() => {
+            if (!content.designSwitch) edit.update(["designSwitch"], {});
+            edit.openSettings(designSwitchSettings);
+          }}
+        >
+          {shown.length > 1 ? "⚙" : "⚙ Дизайны"}
+        </button>
+      </div>
+    );
+  }
+
+  if (shown.length < 2) return null;
+  return (
+    <div className={`lang design-switch ${className}`} role="group" aria-label="Design">
+      {shown.map((d) => (
+        // A plain link: another design is another document (fonts, colours), so it is a full page load anyway.
+        <a
+          key={d}
+          href={href(page, locale, d)}
+          className={`lang__item${d === design ? " is-active" : ""}`}
+          aria-current={d === design ? "true" : undefined}
+        >
+          {t(content.ui[DESIGN_LABEL[d]], locale)}
+        </a>
+      ))}
     </div>
   );
 }
@@ -102,6 +161,7 @@ export function Header() {
         </nav>
 
         <div className="site-header__end">
+          <DesignSwitch className="design-switch--header" />
           <LangSwitch />
           <button
             type="button"
@@ -130,6 +190,7 @@ export function Header() {
             </a>
           ))}
         </nav>
+        <DesignSwitch className="design-switch--menu" />
       </div>
     </header>
   );

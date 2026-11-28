@@ -98,6 +98,32 @@ html[data-design="minimal"] .lang__item.is-active {
   font-weight: 650;
 }
 
+/* No menu in this design: the design switch always stays in the header, wrapping under the name if needed */
+html[data-design="minimal"] .site-header__inner {
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+
+html[data-design="minimal"] .site-header__end {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  column-gap: 0;
+  row-gap: 6px;
+}
+
+html[data-design="minimal"] .design-switch--header {
+  display: flex;
+}
+
+html[data-design="minimal"] .design-switch--header::after {
+  content: "";
+  align-self: center;
+  width: 1px;
+  height: 12px;
+  margin: 0 12px;
+  background: var(--line-strong);
+}
+
 /* The framed column */
 
 html[data-design="minimal"] .page {

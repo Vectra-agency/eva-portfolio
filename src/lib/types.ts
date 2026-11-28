@@ -125,12 +125,17 @@ export const UI_KEYS = [
   "close",
   "toTop",
   "contactMe",
+  "designMinimal",
+  "designEditorial",
+  "designStudio",
 ] as const;
 export type UiKey = (typeof UI_KEYS)[number];
 
 export interface Content {
   /** Visual design of the whole site, chosen in the admin panel. */
   design?: Design;
+  /** Designs visitors can switch between (header switch; each one also has its own link). */
+  designSwitch?: Partial<Record<Design, boolean>>;
   /** Options of the "studio" design: the hero shows the animated avatar or her own photo. */
   studio?: { portrait?: "avatar" | "photo" };
   meta: { title: L; description: L };
